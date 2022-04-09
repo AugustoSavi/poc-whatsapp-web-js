@@ -1,7 +1,7 @@
 import { Boom } from '@hapi/boom'
 import express from 'express'
-import makeWASocket, { DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useSingleFileAuthState } from '../src'
-import MAIN_LOGGER from '../src/Utils/logger'
+import MAIN_LOGGER from './Utils/logger'
+import makeWASocket, { DisconnectReason, fetchLatestBaileysVersion, makeInMemoryStore, useSingleFileAuthState } from '.'
 
 const logger = MAIN_LOGGER.child({ })
 logger.level = 'trace'
