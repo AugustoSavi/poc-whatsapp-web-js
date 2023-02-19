@@ -4,6 +4,8 @@ import whatsappWebJS from "whatsapp-web.js"
 
 const { Client, LocalAuth, Buttons } = whatsappWebJS;
 
+const GROUP_NAME = 'GrupoTesteBot'
+
 const client = new Client({
 	authStrategy: new LocalAuth()
 });
@@ -16,7 +18,7 @@ client.on('qr', qr => {
 client.on('ready', async () => {
 	console.log('Client is ready!');
 
-	const groupName = 'grupo do chat bot';
+	const groupName = GROUP_NAME;
 	const chats = await client.getChats();
 	const group = chats.find(chat => chat.isGroup && chat.name === groupName);
 	if (group) {
@@ -47,15 +49,23 @@ client.on('ready', async () => {
 	}
 });
 
-client.on('message', message => {
+client.on('message', async message => {
 	console.log(message);
 	if (message.type === 'buttons_response') {
 		if(message.body === 'Gostaria de continuar'){
-			message.reply('certo, muito obrigado pela pela sua contribuição');
+			message.reply('Certo, muito obrigado pela sua atenção');
 		}
 
 		if(message.body === 'Pode me remover'){
-			message.reply('certo, dentro de alguns dias vc será removido');
+			message.reply('Certo, muito obrigado pela sua atenção, dentro de alguns instantes você será removido');
+			
+			const groupName = GROUP_NAME;
+			const chats = await client.getChats();
+			const group = chats.find(chat => chat.isGroup && chat.name === groupName);
+
+			if (group) {
+				group.removeParticipants([message.from])
+			}
 		}
 	}
 });
