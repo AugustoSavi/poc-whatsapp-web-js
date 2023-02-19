@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "nodemon scr/index.js",
     "start": "node scr/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/AugustoSavi/PocWhatsapp-web.js#readme",
   "dependencies": {
+    "nodemon": "^2.0.20",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.19.4"
   }
